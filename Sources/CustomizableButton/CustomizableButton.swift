@@ -19,18 +19,18 @@ public extension CustomizableButton {
     /// 按钮布局(layout of button)
     struct CPFButtonLayout {
         /// 元素排列方式
-        var alignment: CPFButtonElementAlignment = .horizontal
+        public var alignment: CPFButtonElementAlignment = .horizontal
         /// 元素优先级
-        var priority: CPFButtonElementPriority = .image
+        public var priority: CPFButtonElementPriority = .image
         
         // 间距, alignment方向上控件间的间距
-        var interSpace: CGFloat = 0
+        public var interSpace: CGFloat = 0
         // 图片显示大小范围
-        var imageSize: CGSize = .zero
+        public var imageSize: CGSize = .zero
         // 文字显示的最大宽度，为0表示显示全部
-        var textMaxWidth: CGFloat = 0
+        public var textMaxWidth: CGFloat = 0
         // 边距
-        var margin: UIEdgeInsets = .zero
+        public var margin: UIEdgeInsets = .zero
     }
 }
 
