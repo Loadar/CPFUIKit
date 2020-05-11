@@ -143,14 +143,14 @@ open class CustomizableButton: UIButton {
         return insets
     }
     
-    convenience init(layout: CPFButtonLayout) {
+    public convenience init(layout: CPFButtonLayout) {
         self.init(frame: .zero)
         self.layout = layout
         
         self.titleLabel?.lineBreakMode = .byTruncatingTail
     }
     
-    convenience init(_ layoutConfigure: ((inout CPFButtonLayout) -> Void)? = nil) {
+    public convenience init(_ layoutConfigure: ((inout CPFButtonLayout) -> Void)? = nil) {
         self.init(frame: .zero)
         layoutConfigure?(&layout)
         
