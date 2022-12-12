@@ -1,5 +1,5 @@
 import XCTest
-@testable import CustomizableButton
+@testable import CPFUIKit
 
 final class CPFUIKitTests: XCTestCase {
     func testExample() {

@@ -1,15 +1,15 @@
 import UIKit
 
-public extension CustomizableButton {
+public extension CPFButton {
     /// 元素排列方式
-    enum CPFButtonElementAlignment {
+    enum CPFElementAlignment {
         /// 元素水平排列
         case horizontal
         /// 元素垂直排列
         case vertical
     }
     // 元素优先级
-    enum CPFButtonElementPriority {
+    enum CPFElementPriority {
         /// 文字显示在前面/上面
         case text
         /// 图片显示在前面/上面
@@ -17,11 +17,11 @@ public extension CustomizableButton {
     }
     
     /// 按钮布局(layout of button)
-    struct CPFButtonLayout {
+    struct CPFLayout {
         /// 元素排列方式
-        public var alignment: CPFButtonElementAlignment = .horizontal
+        public var alignment: CPFElementAlignment = .horizontal
         /// 元素优先级
-        public var priority: CPFButtonElementPriority = .image
+        public var priority: CPFElementPriority = .image
         
         // 间距, alignment方向上控件间的间距
         public var interSpace: CGFloat = 0
@@ -34,9 +34,9 @@ public extension CustomizableButton {
     }
 }
 
-open class CustomizableButton: UIButton {
+open class CPFButton: UIButton {
     
-    var layout = CPFButtonLayout()
+    var layout = CPFLayout()
     private var cpfImageSize: CGSize = .zero
     private var cpfTitleSize: CGSize = .zero
     
@@ -143,21 +143,21 @@ open class CustomizableButton: UIButton {
         return insets
     }
     
-    public convenience init(layout: CPFButtonLayout) {
+    public convenience init(layout: CPFLayout) {
         self.init(frame: .zero)
         self.layout = layout
         
         self.titleLabel?.lineBreakMode = .byTruncatingTail
     }
     
-    public convenience init(_ layoutConfigure: ((inout CPFButtonLayout) -> Void)? = nil) {
+    public convenience init(_ layoutConfigure: ((inout CPFLayout) -> Void)? = nil) {
         self.init(frame: .zero)
         layoutConfigure?(&layout)
         
         self.titleLabel?.lineBreakMode = .byTruncatingTail
     }
     
-    func dfUpdateLayout(_ handler: (inout CPFButtonLayout) -> Void) {
+    func dfUpdateLayout(_ handler: (inout CPFLayout) -> Void) {
         handler(&layout)
         
         self.invalidateIntrinsicContentSize()
