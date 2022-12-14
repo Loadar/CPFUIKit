@@ -23,14 +23,20 @@ public extension CPFButton {
         /// 元素优先级
         public var priority: CPFElementPriority = .image
         
-        // 间距, alignment方向上控件间的间距
+        /// 间距, alignment方向上控件间的间距
         public var interSpace: CGFloat = 0
-        // 图片显示大小范围
+        /// 图片显示大小范围
         public var imageSize: CGSize = .zero
-        // 文字显示的最大宽度，为0表示显示全部
+        /// 文字显示的最大宽度，为0表示显示全部
         public var textMaxWidth: CGFloat = 0
-        // 边距
+        /// 边距
         public var margin: UIEdgeInsets = .zero
+        
+        /// 元素排列垂直方向的尺寸，未指定时根据内容确定，默认为nil
+        public var crossDirectionSize: CGFloat?
+        /// 元素排列方向的最小尺寸，未指定时根据内容确定，默认为nil
+        /// 注意：限定最小尺寸优先使用外层控件布局约束来实现，针对外层难以方便的约束等某些特点情况时，可以指定此值，默认为nil
+        public var minDirectionSize: CGFloat?
     }
 }
 
@@ -211,6 +217,13 @@ open class CPFButton: UIButton {
             contentSize.width += layout.margin.left + layout.margin.right
             contentSize.height += layout.margin.top + layout.margin.bottom
             
+            if let value = layout.crossDirectionSize, value > 0 {
+                contentSize.height = value
+            }
+            if let value = layout.minDirectionSize, value > 0, contentSize.width < value {
+                contentSize.width = value
+            }
+            
             cpfImageSize = imageSize
             cpfTitleSize = textSize
             return contentSize
@@ -244,6 +257,13 @@ open class CPFButton: UIButton {
             contentSize.width += layout.margin.left + layout.margin.right
             contentSize.height += layout.margin.top + layout.margin.bottom
             
+            if let value = layout.crossDirectionSize, value > 0 {
+                contentSize.width = value
+            }
+            if let value = layout.minDirectionSize, value > 0, contentSize.height < value {
+                contentSize.height = value
+            }
+
             cpfImageSize = imageSize
             cpfTitleSize = textSize
             return contentSize
