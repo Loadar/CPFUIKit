@@ -349,6 +349,20 @@ extension Button {
                 }
             }
             
+            if layout.minSize.width > 0 {
+                totalSize.width = max(totalSize.width, layout.minSize.width)
+            }
+            if layout.maxSize.width > 0 {
+                totalSize.width = min(totalSize.width, layout.maxSize.width)
+            }
+            
+            if layout.minSize.height > 0 {
+                totalSize.height = max(totalSize.height, layout.minSize.height)
+            }
+            if layout.maxSize.height > 0 {
+                totalSize.height = max(totalSize.height, layout.maxSize.height)
+            }
+            
             return totalSize
         }
     }
