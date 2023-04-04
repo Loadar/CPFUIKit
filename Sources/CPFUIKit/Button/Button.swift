@@ -76,7 +76,7 @@ open class Button: UIButton {
     }
     
     // MARK: - Update
-    func updateLayout(_ updater: (inout Layout) -> Void) {
+    public func updateLayout(_ updater: (inout Layout) -> Void) {
         updater(&layout)
         
         self.invalidateIntrinsicContentSize()
@@ -90,7 +90,7 @@ open class Button: UIButton {
     /// - Parameters:
     ///   - font: 指定的字体
     ///   - state: 对应的状态
-    public func set(font: UIFont, for state: UIControl.State) {
+    public func set(font: UIFont?, for state: UIControl.State) {
         fontInfo[state.rawValue] = font
         updateFont()
     }
