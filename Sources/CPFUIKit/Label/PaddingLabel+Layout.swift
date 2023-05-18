@@ -14,5 +14,7 @@ public extension PaddingLabel {
         public var contentInsets: UIEdgeInsets = .zero
         /// 尺寸为0时是否忽略内边距，默认true
         public var ignoreContentInsetsWhenZeroSize = true
+        
+        public static var `default`: Self { .init() }
     }
 }

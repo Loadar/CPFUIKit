@@ -69,5 +69,7 @@ public extension Button {
         /// - 为true时，如按钮状态从**.selected**变成**[.selected, .highlighted]**，若匹配不到字体，优先取**.selected**状态的字体
         /// - 为false时，当前状态匹配不到字体时，总是尝试取**.normal**状态的字体，若未指定，取当前字体信息中的第一个，若仍无，使用默认字体
         public var useFontOfUnHighlightedState = true
+        
+        public static var `default`: Self { .init() }
     }
 }
