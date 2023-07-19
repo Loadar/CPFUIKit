@@ -27,6 +27,13 @@ open class PaddingLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
+    open func update(layout changing: (inout Layout) -> Void) {
+        changing(&layout)
+        
+        invalidateIntrinsicContentSize()
+        setNeedsDisplay()
+    }
+    
     open override func drawText(in rect: CGRect) {
         super.drawText(in: UIEdgeInsetsInsetRect(rect, layout.contentInsets))
     }
@@ -45,6 +52,13 @@ open class PaddingLabel: UILabel {
         } else {
             size.width += insets.left + insets.right
             size.height += insets.top +  insets.bottom
+        }
+        
+        if layout.size.width > 0 {
+            size.width = layout.size.width
+        }
+        if layout.size.height > 0 {
+            size.height = layout.size.height
         }
         
         return size
