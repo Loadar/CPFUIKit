@@ -35,7 +35,7 @@ open class PaddingLabel: UILabel {
     }
     
     open override func drawText(in rect: CGRect) {
-        super.drawText(in: UIEdgeInsetsInsetRect(rect, layout.contentInsets))
+        super.drawText(in: rect.inset(by: layout.contentInsets))
     }
     
     open override var intrinsicContentSize: CGSize {

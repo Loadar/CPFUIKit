@@ -38,17 +38,17 @@ open class Button: UIButton {
     
     // MARK: - Overrides
     override open func contentRect(forBounds bounds: CGRect) -> CGRect {
-        return UIEdgeInsetsInsetRect(bounds, layout.contentInsets)
+        bounds.inset(by: layout.contentInsets)
     }
 
     override open func imageRect(forContentRect contentRect: CGRect) -> CGRect {
         let insets = cpfAttributes.imageInsets(in: contentRect.size, of: self)
-        return UIEdgeInsetsInsetRect(contentRect, insets)
+        return contentRect.inset(by: insets)
     }
     
     override open func titleRect(forContentRect contentRect: CGRect) -> CGRect {
         let insets = cpfAttributes.textInsets(in: contentRect.size, of: self)
-        return UIEdgeInsetsInsetRect(contentRect, insets)
+        return contentRect.inset(by: insets)
     }
     
     open override var isSelected: Bool {
