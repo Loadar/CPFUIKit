@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import CPFUIKit
 
 class ViewController: UIViewController {
     private enum Config {
@@ -33,6 +34,28 @@ class ViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
         tableView.dataSource = self
         tableView.delegate = self
+        
+        /// 原站图片提示
+        let sourceImageTipsButton = Button {
+            $0.imageSize = CGSize(width: 6, height: 6)
+            $0.interSpace = 4
+            $0.size = CGSize(width: 74, height: 22)
+        }
+        view.addSubview(sourceImageTipsButton)
+        sourceImageTipsButton.backgroundColor = .black.withAlphaComponent(0.4)
+        sourceImageTipsButton.layer.cornerRadius = 6
+        sourceImageTipsButton.clipsToBounds = true
+        sourceImageTipsButton.titleLabel?.font = .systemFont(ofSize: 12)
+        sourceImageTipsButton.setTitleColor(.white, for: .normal)
+        sourceImageTipsButton.setTitle("原站图片", for: .normal)
+        
+        let image = UIGraphicsImageRenderer(size: CGSize(width: 6, height: 6)).image { context in
+            UIColor.green.setFill()
+            UIRectFill(CGRect(origin: .zero, size: CGSize(width: 6, height: 6)))
+        }
+        sourceImageTipsButton.setImage(image, for: .normal)
+
+        sourceImageTipsButton.frame = CGRect(x: 20, y: 100, width: 74, height: 22)
     }
 
 

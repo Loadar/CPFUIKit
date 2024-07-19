@@ -75,6 +75,11 @@ open class Button: UIButton {
         buttonSize()
     }
     
+    open override func layoutSubviews() {
+        let _ = buttonSize()
+        super.layoutSubviews()
+    }
+    
     // MARK: - Update
     public func updateLayout(_ updater: (inout Layout) -> Void) {
         updater(&layout)
