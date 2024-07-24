@@ -129,7 +129,7 @@ extension Button {
         
         /// 计算文字布局
         func textInsets(in contentSize: CGSize, of button: Button) -> UIEdgeInsets {
-            let layout = button .layout
+            let layout = button.layout
             var insets = UIEdgeInsets.zero
             
             switch layout.axis {
@@ -270,6 +270,14 @@ extension Button {
                 attributes[.font] = button.font(for: state) ?? button.titleLabel?.font
                 textSize = text.boundingRect(with:limitedSize, options: .usesLineFragmentOrigin, attributes: attributes, context: nil).size
             }
+            if textSize != .zero {
+                if layout.textSize.width > 0 {
+                    textSize.width = layout.textSize.width
+                }
+                if layout.textSize.height > 0 {
+                    textSize.height = layout.textSize.height
+                }
+            }
 
             // 图像
             if let image = image, image.size != .zero {
@@ -329,7 +337,7 @@ extension Button {
                         }
                     }
                     if imageSize.width > 0 {
-                        contentSize.width += max(contentSize.width, ceil(imageSize.width))
+                        contentSize.width = max(contentSize.width, ceil(imageSize.width))
                     }
                     totalSize.width = contentSize.width + layout.contentInsets.left + layout.contentInsets.right
                 }

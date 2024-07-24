@@ -21,6 +21,7 @@ final class ButtonViewController: UIViewController {
         case priority
         case interSpace
         case imageSize
+        case textSize
         case maxTextWidth
         case size
         case minSize
@@ -41,6 +42,7 @@ final class ButtonViewController: UIViewController {
             case .priority: return "元素优先级"
             case .interSpace: return "元素间距"
             case .imageSize: return "图标尺寸"
+            case .textSize: return "文字尺寸"
             case .maxTextWidth: return "最大文字宽度"
             case .size: return "总尺寸"
             case .minSize: return "最小总尺寸"
@@ -129,6 +131,7 @@ final class ButtonViewController: UIViewController {
         propertyInfos[.priority] = "image"
         propertyInfos[.interSpace] = "4"
         propertyInfos[.imageSize] = "10,20"
+        propertyInfos[.imageSize] = "0,0"
         propertyInfos[.maxTextWidth] = "0"
         propertyInfos[.size] = "0,0"
         propertyInfos[.minSize] = "0,0"
@@ -391,6 +394,21 @@ extension ButtonViewController: UITableViewDataSource, UITableViewDelegate {
             if toUpdate {
                 button.updateLayout {
                     $0.imageSize = CGSize(width: width, height: height)
+                }
+            }
+            return true
+        case .textSize:
+            let components = info.components(separatedBy: ",")
+            guard components.count == 2 else {
+                return false
+            }
+            guard let width = Int(components[0]), let height = Int(components[1]) else {
+                return false
+            }
+            
+            if toUpdate {
+                button.updateLayout {
+                    $0.textSize = CGSize(width: width, height: height)
                 }
             }
             return true

@@ -49,6 +49,9 @@ public extension Button {
         public var imageSize: CGSize = .zero
         /// 文字显示的最大宽度，正值有效，非正值表示显示全部
         public var maxTextWidth: CGFloat = 0
+        /// 文字尺寸，规则同 imageSize
+        public var textSize: CGSize = .zero
+        
         /// 总尺寸，包含内容及边距
         /// - 控件总尺寸建议优先使用外部布局约束，某些特殊情况下可以指定此值
         /// - 指定的尺寸宽、高分别判定，正值有效
